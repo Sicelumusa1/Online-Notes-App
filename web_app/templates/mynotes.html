@@ -2,13 +2,20 @@
 {% block title %}My Notes{% endblock %}
 
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-6-lg">
-      <button title="add_note" id="add_note" type="button" class="btn btn-small signup-color me-auto">Add Note</button>
-      <button title="edit" id="edit" type="button" class="btn btn-small signup-color">Edit</button>
-      <button title="edit" id="all_notes" type="button" class="btn btn-small signup-color me-auto">All Notes</button>
-      <button title="edit" id="done" type="button" class="btn btn-small signup-color">Done</button>
-      <div class="textarea note-textarea"></div>
+<div class="row justify-content-center">
+  <div class=" col-offset-3 col-6">
+    <div class="buttons">
+      <button title="add_note" id="add_note" type="button" class="btn btn-small btn-primary me-auto">Add Note</button>
+      <button title="edit" id="edit" type="button" class="btn btn-small btn-primary">Edit</button>
+      <button title="edit" id="all_notes" type="button" class="btn btn-small btn-primary me-auto">All Notes</button>
+      <button title="edit" id="done" type="button" class="btn btn-small btn-success">Done</button>
+    </div>
+    <div>
+      <textarea title="notes" rows="10" class="note-textarea"></textarea>
+    </div>
+    <div class="notes_list" id="notes_list">
+      To be addded dynamically
     </div>
   </div>
+</div>
 {% endblock %}

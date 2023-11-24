@@ -71,6 +71,39 @@ form {
   justify-content: space-between;
 }
 
+/* My Notes Styling */
+.note-textarea {
+  background: rgb(126, 150, 146);
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  border: 2px solid rgb(108, 86, 190);
+  border-left: 20px solid rgb(108, 86, 190);
+  color: rgb(37, 9, 139);
+}
+
+.container {
+  margin-top: 150px;
+  text-align: center;
+}
+.buttons {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+#all_notes, #done, .note-textarea {
+  display: none;
+}
+
+/* Profile Styling */
+.table-responsive {
+  text-align: start;
+}
+
+tr {
+  cursor: pointer;
+}
+
 /* Navbar Styling */
 .navbar-custom, .footer {
   background-color: #3e6770;

@@ -11,7 +11,7 @@
     data-bs-target="#login">Login</a>
 </div>
 
-<!--Sign-in Modal-->
+<!--login Modal-->
 <div class="modal fade" id="login" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
@@ -20,7 +20,10 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body p-0">
-      <form method="POST">
+      <!-- Success or Error Messages -->
+      <div id="loginmessage">
+      </div>
+      <form method="POST" action="/login">
         <div class="form-group">
           <label for="u_email"></label>
           <input type="email" class="form-control" id="u_email" name="email" placeholder="Email Address">
@@ -39,32 +42,26 @@
               data-bs-toggle="modal"
               data-bs-target="#ForgotPassword">Forgot Password?</a>
         </div>
+        <div class="modal-footer">
+          <a 
+            href="/web_app/templates/home.html"
+            class="btn btn-sm signup-color me-auto"
+            data-bs-toggle="modal"
+            data-bs-target="#signup">
+            Signup
+          </a>
+          <button type="submit" class="btn btn-sm signup-color">Login</button>
+          <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+            Cancel
+          </a>
+        </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <a 
-        href="/web_app/templates/home.html"
-        class="btn btn-sm signup-color me-auto"
-        data-bs-toggle="modal"
-        data-bs-target="#signup">
-        Signup
-      </a>
-      <a 
-        href="#"
-        type="submit"
-        class="btn btn-sm signup-color"
-        data-bs-toggle="modal"
-        data-bs-target="#">
-        Login
-      </a>
-      <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-        Cancel
-      </a>
-    </div>
+    
   </div>
 </div>
 </div>
-<!--Sign-in Modal-->
+<!--login Modal-->
 
 <!--Forgot Password Modal-->
 <div class="modal fade" id="ForgotPassword" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
@@ -77,30 +74,23 @@
       <div class="modal-body p-0">
         <form method="POST">
           <div class="form-group">
-            <label for="u_email"></label>
-            <input type="email" class="form-control" id="u_email" placeholder="Email Address">
+            <label for="email"></label>
+            <input type="email" class="form-control" id="email" placeholder="Email Address">
+          </div>
+          <div class="modal-footer">
+            <a 
+              href="/web_app/templates/home.html"
+              class="btn btn-sm signup-color me-auto"
+              data-bs-toggle="modal"
+              data-bs-target="#signup">
+              Signup
+            </a>
+            <button type="submit" class="btn btn-sm signup-color">Submit</button>
+            <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+              Cancel
+            </a>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <a 
-          href="/web_app/templates/home.html"
-          class="btn btn-sm signup-color me-auto"
-          data-bs-toggle="modal"
-          data-bs-target="#signup">
-          Signup
-        </a>
-        <a 
-          href="#"
-          type="submit"
-          class="btn btn-sm signup-color"
-          data-bs-toggle="modal"
-          data-bs-target="#">
-          Submit
-        </a>
-        <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-          Cancel
-        </a>
       </div>
     </div>
   </div>
