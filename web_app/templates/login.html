@@ -21,8 +21,7 @@
     </div>
     <div class="modal-body p-0">
       <!-- Success or Error Messages -->
-      <div id="loginmessage">
-      </div>
+      {% include "_errors.html" %}
       <form method="POST" action="/login">
         <div class="form-group">
           <label for="u_email"></label>

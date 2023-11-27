@@ -7,10 +7,13 @@ body {
   background: url(images/coffee-2425254_1280.jpg) no-repeat center center;
   background-attachment: fixed;
   background-size: cover;
-  min-height: 99%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .container {
   margin-top: 150px;
+  margin-bottom: 50px;
 }
 /* Home page styling */
 #home {
@@ -34,11 +37,11 @@ body {
   text-align: center;
 }
 
-/* Style Note text area */
+/* Style Note text area
 .note-textarea {
   background: violet;
-  visibility: hidden;
-}
+  visibility:hidden;
+} */
 
 /* footer styling */
 .footer {
@@ -72,8 +75,8 @@ form {
 }
 
 /* My Notes Styling */
-.note-textarea {
-  background: rgb(126, 150, 146);
+.textarea {
+  background: rgb(148, 195, 209);
   width: 100%;
   max-width: 100%;
   font-size: 16px;
@@ -91,17 +94,77 @@ form {
   display: flex;
   justify-content: space-between;
 }
-#all_notes, #done, .note-textarea {
+#all_notes, #done, .note, .delEditBtn {
   display: none;
 }
+.list-group-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 10px 0 ;
+}
+.note_info {
+  min-width: 70%;
+  margin-right: 10px;
+  font-size: 14px;
+}
+ 
+#edit_note {
+  background: #d8ee5e;
+  margin-right: 10px;
+  height: 40px;
+}
+#delete_Note {
+  padding: 0 8px;
+  height: 40px;
+}
+.list-group-item {
+  border: 1px solid gray;
+  background-color: rgb(148, 195, 209);
+  color: #211f1f;
+  text-align: start;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  display: block;
+  min-width: 100%;
+}
+/* .note_delete {
+  width: 30%;
+  display: inline-flex;
+  text-align: start;
+  padding-top: 0;
+} */
+
+.data {
+  max-width: 100%;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} 
+
 
 /* Profile Styling */
+
 .table-responsive {
   text-align: start;
 }
-
 tr {
   cursor: pointer;
+}
+
+/* Alert Messages */
+.alert {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Close {
+  border: none;
+  background: transparent;
 }
 
 /* Navbar Styling */

@@ -4,18 +4,39 @@
 {% block content %}
 <div class="row justify-content-center">
   <div class=" col-offset-3 col-6">
+    {% include "_errors.html" %}
     <div class="buttons">
       <button title="add_note" id="add_note" type="button" class="btn btn-small btn-primary me-auto">Add Note</button>
-      <button title="edit" id="edit" type="button" class="btn btn-small btn-primary">Edit</button>
       <button title="edit" id="all_notes" type="button" class="btn btn-small btn-primary me-auto">All Notes</button>
+      <button title="edit" id="edit" type="button" class="btn btn-small btn-primary">Edit</button>
       <button title="edit" id="done" type="button" class="btn btn-small btn-success">Done</button>
     </div>
-    <div>
-      <textarea title="notes" rows="10" class="note-textarea"></textarea>
+    <div class="note">
+      <form method="POST">
+        <textarea name="note" title="notes" rows="10" class="textarea"></textarea> <br />
+        <button title="add-Note" class="btn btn-small btn-primary" type="submit">Add</button>
+      </form>
     </div>
-    <div class="notes_list" id="notes_list">
-      To be addded dynamically
-    </div>
+    <ul class="list-group" id="notes_list">
+      {% for note in user.notes %}
+          <li class="list-group-item">
+            <div class="list-group-item-container">
+              <div class="note_info">
+                <div class="data">
+                  {{ note.data }}
+                </div>
+                <div class="date">
+                  {{ note.date.strftime('%Y-%m-%d %H:%M:%S') }} 
+                </div>
+              </div>
+                <div class="delEditBtn">
+                  <button title="edit" id="edit_note" type="button" class="btn btn-small">Edit</button>
+                  <button title="delete_Note" type="button" id="delete_Note" class="btn btn-danger btn-small" onclick="deleteNote({{ note.id }})">Delete</button>
+                </div>
+            </div>
+          </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 {% endblock %}
