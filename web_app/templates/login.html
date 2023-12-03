@@ -2,8 +2,14 @@
 {% block content %}
 <div class="login">
   <h1>Online Notes App</h1>
-  <p>Take your notes with you wherever you go.</p>
+  <p>Login to Access your Notes.</p>
   <p>Easy to use. Protect and organize your notes!</p>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+       <!-- Success or Error Messages display -->
+      {% include "_errors.html" %}
+    </div>
+  </div>
   <a 
     href="#" 
     class="btn signup signup-color"

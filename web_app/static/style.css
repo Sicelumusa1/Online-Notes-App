@@ -14,11 +14,17 @@ body {
 .container {
   margin-top: 150px;
   margin-bottom: 50px;
+  position: relative;
 }
 /* Home page styling */
 #home {
   text-align: center;
   /* background: transparent; */
+}
+
+#sign_up {
+  justify-content: center;
+  margin-left: auto;
 }
 .signup {
   margin-top: 50px;
@@ -97,6 +103,10 @@ form {
 #all_notes, #done, .note, .delEditBtn {
   display: none;
 }
+
+.show-note {
+  display: block;
+}
 .list-group-item-container {
   display: flex;
   flex-direction: row;
@@ -160,6 +170,7 @@ tr {
   padding: 0;
   display: flex;
   justify-content: space-between;
+  margin: 16px 10px
 }
 
 .Close {

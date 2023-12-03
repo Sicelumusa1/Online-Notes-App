@@ -12,13 +12,13 @@
       <button title="edit" id="done" type="button" class="btn btn-small btn-success">Done</button>
     </div>
     <div class="note">
-      <form method="POST">
+      <form method="POST" class="show-note">
         <textarea name="note" title="notes" rows="10" class="textarea"></textarea> <br />
         <button title="add-Note" class="btn btn-small btn-primary" type="submit">Add</button>
       </form>
     </div>
     <ul class="list-group" id="notes_list">
-      {% for note in user.notes %}
+      {% for note in user.notes|reverse %}
           <li class="list-group-item">
             <div class="list-group-item-container">
               <div class="note_info">
@@ -30,7 +30,7 @@
                 </div>
               </div>
                 <div class="delEditBtn">
-                  <button title="edit" id="edit_note" type="button" class="btn btn-small">Edit</button>
+                  <button title="edit" id="edit_note" type="button" class="btn btn-small" onclick="editNote({{ note.id }}, '{{ note.data }}')">Edit</button>
                   <button title="delete_Note" type="button" id="delete_Note" class="btn btn-danger btn-small" onclick="deleteNote({{ note.id }})">Delete</button>
                 </div>
             </div>
@@ -39,4 +39,81 @@
     </ul>
   </div>
 </div>
+<script>
+   // delete a note
+   function deleteNote(noteId) {
+    fetch('/delete_note', {
+      method: 'POST',
+      body: JSON.stringify({noteId: noteId}),
+    }).then((res) => {
+      window.location.href = '';
+    });
+  }
+
+  // edit an existing note
+  function editNote(noteId, newContent) {
+    // populate the notepad with the content of teh selected note
+    const addNote = document.getElementById('add_note')
+    const allNotesBtn = document.getElementById('all_notes')
+    const notesListItem = document.querySelectorAll('.list-group-item')
+    const noteContainer = document.querySelector('.note')
+    const noteTextarea = document.querySelector('.textarea')
+    const edit = document.getElementById('edit')
+    const done = document.getElementById('done')
+    const delEditBtn = document.querySelectorAll('.delEditBtn')
+
+    if (noteTextarea) {
+      noteTextarea.value = newContent;
+      // Display the textarea for editing
+      noteContainer.classList.add('show-note');
+    }
+
+    // hide list of notes
+    notesListItem.forEach(item => {
+      item.style.display = 'none';
+    });
+
+    addNote.style.display = 'none';
+    allNotesBtn.style.display = 'none';
+
+    edit.style.display = 'none';
+    done.style.display = 'block';
+
+    delEditBtn.forEach(item => {
+      item.style.display = 'flex';
+    });
+
+    // Add event listener to the 'Done' button
+    done.addEventListener('click', function () {
+      // save the updated note to the server
+      saveUpdatedNote(noteId, noteTextarea.value);
+    });
+  }
+
+
+  function saveUpdatedNote(noteId, newContent) {
+    fetch('/edit_note', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ noteId: noteId, newContent: newContent }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          console.error('Server response:', res);
+          throw new Error('Server error');
+        }
+      })
+      .then((data) => {
+        console.log('Server data:', data);
+        window.location.href = '/mynotes';
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+</script>
 {% endblock %}

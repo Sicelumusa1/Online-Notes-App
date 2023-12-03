@@ -51,6 +51,8 @@
         <ul class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item"><a href="/loggein_as" class="nav-link">logged in as <span><strong>{{ user.username }}</strong></span></a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="/sign_up">Signup</a></li>
         {% endif %}
 
         {% if user.is_authenticated %}

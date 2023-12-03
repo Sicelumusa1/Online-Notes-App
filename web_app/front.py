@@ -7,11 +7,13 @@ import json
 
 front = Blueprint('front', __name__, template_folder='templates')
 
+# home page route
 @front.route('/')
 @front.route('/home')
 def home():
   return render_template("home.html", user=None)
 
+# route for redirecting user to their notes and start creating
 @front.route('/mynotes', methods=['GET', 'POST'])
 @login_required
 def mynotes():
@@ -24,13 +26,14 @@ def mynotes():
       db.session.add(new_note)
       db.session.commit()
       flash("Note created", category='success')
-  user = User.query.filter_by(id=current_user.id).first
   return render_template("mynotes.html", user=current_user)
 
+# route to redirect currently logged in use to their profile
 @front.route('/profile')
 def profile():
   return render_template('profile.html', user=current_user)
 
+# route for deleting a note
 @front.route('delete_note', methods=['POST'])
 def delete_note():
   note = json.loads(request.data)
@@ -41,4 +44,21 @@ def delete_note():
       db.session.delete(note)
       db.session.commit()
       flash("Note successfully deleted", category='success')
+  return jsonify({})
+
+# route for editing a note
+@front.route('edit_note', methods=['POST'])
+@login_required
+def edit_note():
+  
+  note_data = request.get_json()
+  note_id = note_data['noteId']
+  updated_content = note_data['newContent']
+
+  note = Note.query.get(note_id)
+  if note and note.user_id == current_user.id:
+    note.data = updated_content
+    db.session.commit()
+    flash("Note successfully updated", category='success')
+  
   return jsonify({})

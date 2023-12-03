@@ -1,3 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Sign_up{% endblock %}
+
+{% block content %}
+
+<div id="sign_up">
+  
+  <h1>Online Notes App</h1>
+  <p>Signup to start using the Notes App.</p>
+  <p>Easy to use. Protect and organize your notes!</p>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+       <!-- Success or Error Messages display -->
+      {% include "_errors.html" %}
+    </div>
+  </div>
+  <a 
+    href="#" 
+    class="btn signup signup-color"
+    data-bs-toggle="modal"
+    data-bs-target="#signup">Sign up, it's free</a>
+</div>
 
 <!--Signup Modal-->
 <div class="modal fade" id="signup" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
@@ -39,3 +61,4 @@
   </div>
   </div>
   <!--Signup Modal-->
+  {% endblock %}
