@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify,redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy.sql import func
 from .models import Note,User
-from web_app import db
+from web_app import db, mail
 import json
+from flask_mail import Mail, Message
 
 front = Blueprint('front', __name__, template_folder='templates')
 
@@ -12,6 +13,27 @@ front = Blueprint('front', __name__, template_folder='templates')
 @front.route('/home')
 def home():
   return render_template("home.html", user=None)
+
+# Contact form route
+@front.route('/contactForm')
+@login_required
+def contactForm():
+  return render_template("contact.html", user=current_user)
+
+@front.route('/contact_us', methods=['POST'])
+@login_required
+def contact_us():
+  
+  name = request.form['contact_user']
+  email = request.form['contact_email']
+  subject = request.form['contact_subject']
+  message = request.form['contact_message']
+
+  msg = Message(subject=subject, sender=email, recipients=['musaqwabe@gmail.com'])
+  msg.body = f"Name:{name}\nEmail: {email}\n\n{message}"
+  mail.send(msg)
+  flash('Message Sent', category='success')
+  return redirect(url_for('front.contactForm'))
 
 # route for redirecting user to their notes and start creating
 @front.route('/mynotes', methods=['GET', 'POST'])

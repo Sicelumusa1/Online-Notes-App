@@ -1,6 +1,8 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime, timedelta
+import secrets
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,4 +16,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     username = db.Column(db.String(255))
     password = db.Column(db.String(255))
+    reset_token = db.Column(db.String(100), nullable=True)
+    reset_token_expiration = db.Column(db.DateTime, nullable=True)
     notes = db.relationship('Note')

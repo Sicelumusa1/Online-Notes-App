@@ -4,22 +4,33 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from dotenv import load_dotenv
 from flask_login import LoginManager
+from flask_mail import Mail, Message
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 DB_NAME = 'notes_db'
 load_dotenv()
 my_key = os.getenv('MYKEY')
+mail = Mail()
 
 def create_app():
   app = Flask(__name__)
   app.config['SECRET_KEY']= my_key
 
   app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{my_key}@localhost/{DB_NAME}'
-
-  db.init_app(app)
-
+  app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+  app.config['MAIL_PORT'] = 465
+  app.config['MAIL_USE_TLS'] = False
+  app.config['MAIL_USE_SSL'] = True
+  app.config['MAIL_USERNAME'] = 'musaqwabe@gmail.com'
+  with open('email_pass.txt', 'r') as f:
+    app.config['MAIL_PASSWORD'] = f.read().strip()
+  app.config['MAIL_DEFAULT_SENDER'] = 'musaqwabe@gmail.com'
   
+  db.init_app(app)
+  mail.init_app(app)
 
+  migrate = Migrate(app, db)
 
   from web_app.front import front
   from web_app.auth import auth

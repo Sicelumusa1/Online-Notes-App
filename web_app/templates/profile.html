@@ -3,21 +3,22 @@
 
 {% block content %}
 <div class="row justify-content-center">
-  <div class=" col-offset-3 col-6">
+  <div class=" col-offset-3 col-sm-12 col-md-6">
+    {% include "_errors.html" %}
     <h2>Profile Details</h2>
     <div class="table-responsive">
       <table class="table table-hover table-condensed table-bordered">
         <tr data-bs-toggle="modal" data-bs-target="#username">
           <td>Username</td>
-          <td>Sicelumusa</td>
+          <td>{{ user.username }}</td>
         </tr>
         <tr data-bs-toggle="modal" data-bs-target="#email">
           <td>Email Address</td>
-          <td>musaqwabe@gamil.com</td>
+          <td>{{ user.email }}</td>
         </tr>
         <tr data-bs-toggle="modal" data-bs-target="#password">
           <td>Password</td>
-          <td>hidden</td>
+          <td>**************</td>
         </tr>
       </table>
     </div>
@@ -30,21 +31,18 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
-    {% include "_errors.html" %}
-    <form action="">
+    <form action="/reset_username" method="POST">
       <div class="form-group">
         <label for="u_name"></label>
-        <input type="name" class="form-control" id="u_name" placeholder="Username">
+        <input type="name" name="reset_name" class="form-control" id="u_name" placeholder="Username">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-sm signup-color">Submit</button>
+        <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+          Cancel
+        </a>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#" type="submit" class="btn btn-sm signup-color" data-bs-toggle="modal" data-bs-target="#">
-      Submit
-    </a>
-    <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-      Cancel
-    </a>
   </div>
 </div>
 </div>
@@ -60,21 +58,18 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
-    {% include "_errors.html" %}
-    <form action="">
+    <form action="/reset_email" method="POST">
       <div class="form-group">
         <label for="u_email"></label>
-        <input type="email" class="form-control" id="u_email" placeholder="Email Address">
+        <input type="email" name="reset_email" class="form-control" id="u_email" placeholder="Email Address">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-sm signup-color">Submit</button>
+        <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+          Cancel
+        </a>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#" type="submit" class="btn btn-sm signup-color" data-bs-toggle="modal" data-bs-target="#">
-      Submit
-    </a>
-    <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-      Cancel
-    </a>
   </div>
 </div>
 </div>
@@ -90,29 +85,26 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
-    {% include "_errors.html" %}
-    <form action="">
+    <form action="/reset_password" method="POST">
       <div class="form-group">
         <label for="u_pass"></label>
-        <input type="password" class="form-control" id="u_pass" placeholder="Currrent Password">
+        <input type="password" name="current_pass" class="form-control" id="u_pass" placeholder="Currrent Password">
       </div>
       <div class="form-group">
         <label for="your_pass"></label>
-        <input type="password" class="form-control" id="your_pass" placeholder="Choose New Password">
+        <input type="password" name="new_pass1" class="form-control" id="your_pass" placeholder="Choose New Password">
       </div>
       <div class="form-group">
         <label for="u_pass_conf"></label>
-        <input type="password" class="form-control" id="u_pass_conf" placeholder="Confirm New Password">
+        <input type="password" name="new_pass2" class="form-control" id="u_pass_conf" placeholder="Confirm New Password">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-sm signup-color">Submit</button>
+        <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+          Cancel
+        </a>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#" type="submit" class="btn btn-sm signup-color" data-bs-toggle="modal" data-bs-target="#">
-      Submit
-    </a>
-    <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-      Cancel
-    </a>
   </div>
 </div>
 </div>

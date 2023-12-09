@@ -26,8 +26,6 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body p-0">
-      <!-- Success or Error Messages -->
-      {% include "_errors.html" %}
       <form method="POST" action="/login">
         <div class="form-group">
           <label for="u_email"></label>
@@ -35,26 +33,16 @@
         </div>
         <div class="form-group">
           <label for="u_pass"></label>
-          <input type="password" class="form-control" id="u_pass" name="password" placeholder="Choose Password">
+          <input type="password" class="form-control" id="u_pass" name="password" placeholder="Enter Your Password">
         </div>
         <div class="remember-forgot">
-          <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="tickme">
-            <label for="tickme">Remember me</label>
-          </div>
           <a 
               href="#" 
               data-bs-toggle="modal"
               data-bs-target="#ForgotPassword">Forgot Password?</a>
         </div>
         <div class="modal-footer">
-          <a 
-            href="/web_app/templates/home.html"
-            class="btn btn-sm signup-color me-auto"
-            data-bs-toggle="modal"
-            data-bs-target="#signup">
-            Signup
-          </a>
+          <a href="/sign_up" class="btn btn-sm signup-color me-auto">Signup</a>
           <button type="submit" class="btn btn-sm signup-color">Login</button>
           <a href="#" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">
             Cancel
@@ -77,17 +65,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-0">
-        <form method="POST">
+        <form  action="/forgot_password" method="POST">
           <div class="form-group">
             <label for="email"></label>
-            <input type="email" class="form-control" id="email" placeholder="Email Address">
+            <input type="email" name="forgot_pass" class="form-control" id="email" placeholder="Email Address">
           </div>
           <div class="modal-footer">
             <a 
-              href="/web_app/templates/home.html"
-              class="btn btn-sm signup-color me-auto"
-              data-bs-toggle="modal"
-              data-bs-target="#signup">
+              href="/sign_up"
+              class="btn btn-sm signup-color me-auto">
               Signup
             </a>
             <button type="submit" class="btn btn-sm signup-color">Submit</button>

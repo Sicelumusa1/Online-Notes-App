@@ -12,14 +12,31 @@ body {
   min-height: 100vh;
 }
 .container {
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 50px;
   position: relative;
+  text-align: center;
 }
 /* Home page styling */
-#home {
-  text-align: center;
-  /* background: transparent; */
+#home ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  margin-top: 50px;
+}
+#home ul li i {
+  margin-right: 20px;
+  font-size: 40px;
+  background-color: rgb(148, 195, 209);
+  border-radius: 50%;
+  margin-top: 10px;
+}
+/* contact page styling */
+#contact {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 
 #sign_up {
@@ -42,12 +59,6 @@ body {
 .login {
   text-align: center;
 }
-
-/* Style Note text area
-.note-textarea {
-  background: violet;
-  visibility:hidden;
-} */
 
 /* footer styling */
 .footer {
@@ -77,7 +88,7 @@ form {
 } 
 .remember-forgot {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 /* My Notes Styling */

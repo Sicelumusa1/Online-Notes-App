@@ -7,6 +7,7 @@ let notePad = document.querySelector('.note')
 const edit = document.getElementById('edit')
 const done = document.getElementById('done')
 const delEditBtn = document.querySelectorAll('.delEditBtn')
+const alert = document.querySelectorAll('.alert')
 
 // Navigate around My Notes page
 
@@ -33,6 +34,13 @@ const delEditBtn = document.querySelectorAll('.delEditBtn')
     edit.style.display = showButtons ? 'none' : 'block';
     done.style.display = showButtons ? 'block' : 'none';
   }
+
+  alert.forEach(function (alert) {
+    setTimeout(function () {
+      alert.style.transition = 'opacity 0.5s';
+      alert.style.opacity = 0;
+    }, 5000)
+  });
   
   // Event listeners
   addNote.addEventListener('click', (e) => toggleNotePadAndNotes(e, true));

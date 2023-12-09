@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-offset-3 col-sm-12 col-md-6" id="contact">
+    {% include "_errors.html" %}
+    <h1>Send Us A Message</h1>
+    <p>Reach out to us should you have any questions, concerns or suggestions</p>
+    <form action="/contact_us" method="POST">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="contact_user" id="u_name" placeholder="Name" autofocus required>
+        <label for="u_name">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" name="contact_email" id="u_mail" placeholder="youremail@mail.com" required>
+        <label for="u_mail">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="contact_subject" id="u_subject" placeholder="Subject" required>
+        <label for="u_subject">Subject</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea title="Message" type="textarea" class="form-control" name="contact_message" id="message" rows="10" placeholder="message" required maxlength="500"></textarea>
+        <label for="message">Message</label>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-small signup-color">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
