@@ -41,9 +41,13 @@ def contact_us():
 def mynotes():
   if request.method == 'POST':
     note = request.form.get('note')
+    
     if len(note) < 1:
       flash("The note is too short", category='error')
     else:
+      # Extract keywords for search functionality
+      keywords = extract_keywords(note)
+
       new_note = Note(data=note, date=func.now(), user_id=current_user.id)
       db.session.add(new_note)
       db.session.commit()
@@ -84,3 +88,10 @@ def edit_note():
     flash("Note successfully updated", category='success')
   
   return jsonify({})
+
+def extract_keywords(note):
+  # split the note into words and turn to lowercase
+  words = note.lower().split()
+  # combine unique words as keywords
+  keywords = ' '.join(set(words))
+  return keywords

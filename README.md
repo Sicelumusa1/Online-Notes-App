@@ -1,6 +1,6 @@
 # Online Notes App
 
-A simple online notes app to create, store and organize your notes.
+A simple online notes app to create, store and find your notes.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ A simple online notes app to create, store and organize your notes.
 ## Overview
 
 Wellcome to our Online Notes App. This application provides a user-friendly platform for creating,
-storing, and organizing your notes effortlessly. Whether you are a student, professional, or just 
+storing, and finding your notes effortlessly. Whether you are a student, professional, or just 
 someone who loves jotting down thoughts, our app is designed to simplify and enhance your note-taking
 experience.
 
@@ -27,56 +27,51 @@ experience.
 
 2. Intuitive Note Creation:
   - Easily create and edit notes with a clean and user-friendly interface.
-  - Use a rich text editor for formatting text, adding bullet points, and more.
 
-3. Organize Your Notes:
-  - Categorize your notes with customizab;e tags or categories for easy organization.
-  - Arrange notes by date, title, or other criteria to fine them quickly.
-
-4. Search Functionality:
+3. Search Functionality:
   - Effortlessly search through your notes using keywords to locate specific information.
 
-5. Responsive Design:
+4. Responsive Design:
   - Access your notes seamlessly from any device, including desktop, tablets, and smartphones.
 
-6. Secure Data Storage:
+5. Secure Data Storage:
   - Your notes are securely stored in a database, ensuring the privacy and integrity of your information
 
-7. User-Friendly Dashboard:
+6. User-Friendly Dashboard:
   - Navigate through your notes using an intuitive dashboard that provides quick access to all app features.
 
 ## Getting Started
 ### Prerequisites
-- Python Installed
-- Virtual Environment
+  - Python Installed
+  - Virtual Environment
   
 ### Installation
 #### Set Up The Server:
-1. Choose a Server: (e.g Google Cloud, AWS, DigitalOcean, etc.) and create a new server instance
+  1. Choose a Server: (e.g Google Cloud, AWS, DigitalOcean, etc.) and create a new server instance
 
-2. Connect to the Server: SSH into your server
+  2. Connect to the Server: SSH into your server
  
 #### Install Required Software:
-1. Update the Package Manager:
+  1. Update the Package Manager:
 sudo apt update
 
-2. Install Python and pip:
+  2. Install Python and pip:
 sudo apt install python3 python3-pip
 
-3. Install Virtualenv:
+  3. Install Virtualenv:
 sudo pip3 install virtualenv
 
 #### Deploy Flask App:
-1. Copy the app to the server:
-Transfer the flask app code to the server
+  1. Copy the app to the server:
+  Transfer the flask app code to the server
 
-2. Create a Virtual Environment:
-python -m venv venv
-source venv/bin/activate (for MacOS or Unix)
-.\venv\Scripts\activate (for Windows)
+  2. Create a Virtual Environment:
+  python -m venv venv
+  source venv/bin/activate (for MacOS or Unix)
+  .\venv\Scripts\activate (for Windows)
 
-3. Install Dependances:
-pip install -r requirements.txt
+  3. Install Dependances:
+  pip install -r requirements.txt
 
 #### Configure a Web Server (Nginx):
   1. Install Nginx:
@@ -109,24 +104,24 @@ pip install -r requirements.txt
       sudo service nginx reload
 
 #### Set Up a Database:
-1. Install and Configure Database:
-  Install and configure PostgreSQL database system
-2. Update Flask App configuration:
-  Update the Flask app configuration to use the database credentials
+  1. Install and Configure Database:
+    Install and configure PostgreSQL database system
+  2. Update Flask App configuration:
+    Update the Flask app configuration to use the database credentials
 
 #### Configure Firewall:
-1. Update Firewall Rules:
-  Set or update rules to allow traffic on the necessary ports.
+  1. Update Firewall Rules:
+    Set or update rules to allow traffic on the necessary ports.
 
 #### Set Up DOmain and SSL:
-1. Configure Domain:
-  Set up DNS records to point your domain to the server's IP address
+  1. Configure Domain:
+    Set up DNS records to point your domain to the server's IP address
 
-2. Install Certbot:
-  sudo apt install certbot python3-certbot-nginx
+  2. Install Certbot:
+    sudo apt install certbot python3-certbot-nginx
 
-3. Obtain SSL Certificate:
-  sudo certbot --nginx -d your_domain.co.za  -d www.your_domain.co.za
+  3. Obtain SSL Certificate:
+    sudo certbot --nginx -d your_domain.co.za  -d www.your_domain.co.za
 
 
 ## Usage
@@ -139,16 +134,12 @@ pip install -r requirements.txt
 
 3. Create a Note:
   - Click on the "Add Note" button to create a note.
-  - Use the rich text editor to format your content.
 
-4. Organize Your Notes:
-  - Add tags or categories to your notes for easy organization.
-  - Sort notes based on date, title, or category.
 
-5. Search and Find:
+4. Search and Find:
   - Utilize the search funtionality to quickly find specific notes.
 
-6. Access Anywhere:
+5. Access Anywhere:
   - Access your notes from any device with an internet connection.
 
 ## Security Measures

@@ -6,20 +6,24 @@
   <div class="col-offset-3 col-sm-12 col-md-6">
     {% include "_errors.html" %}
     <div class="buttons">
-      <button title="add_note" id="add_note" type="button" class="btn btn-small btn-primary me-auto">Add Note</button>
-      <button title="edit" id="all_notes" type="button" class="btn btn-small btn-primary me-auto">All Notes</button>
-      <button title="edit" id="edit" type="button" class="btn btn-small btn-primary">Edit</button>
-      <button title="edit" id="done" type="button" class="btn btn-small btn-success">Done</button>
+      <button title="add_note" id="add_note" type="button" class="btn btn-small btn-primary me-auto">Add_Note</button>
+      <button title="View" id="all_notes" type="button" class="btn btn-small btn-primary me-auto">All_Notes</button>
+      <div class="search-bar input-group">
+        <input type="text" id="search-input" size="30" class="form-control form-control-sm" placeholder=" Search by Keywords">
+        <button id="search-button" type="button" title="search" class="btn btn-small btn-primary"><i class="las la-search"></i></button>
+      </div>
+      <button title="edit" id="edit" type="button" class="btn btn-small btn-primary">View/Edit</button>
+      <button title="Done" id="done" type="button" class="btn btn-small btn-success">Done</button>
     </div>
     <div class="note">
       <form method="POST" class="show-note">
         <textarea name="note" title="notes" rows="10" class="textarea"></textarea> <br />
-        <button title="add-Note" class="btn btn-small btn-primary" type="submit">Add</button>
+        <button title="add-Note" id="add" class="btn btn-small btn-primary" type="submit">Add</button>
       </form>
     </div>
     <ul class="list-group" id="notes_list">
       {% for note in user.notes|reverse %}
-          <li class="list-group-item">
+          <li class="list-group-item" onclick="editNote({{ note.id }}, '{{ note.data }}')">
             <div class="list-group-item-container">
               <div class="note_info">
                 <div class="data">
@@ -30,7 +34,7 @@
                 </div>
               </div>
                 <div class="delEditBtn">
-                  <button title="edit" id="edit_note" type="button" class="btn btn-small" onclick="editNote({{ note.id }}, '{{ note.data }}')">Edit</button>
+                  <button title="edit" id="edit_note" type="button" class="btn btn-small" onclick="editNote({{ note.id }}, '{{ note.data }}')">View/Edit</button>
                   <button title="delete_Note" type="button" id="delete_Note" class="btn btn-danger btn-small" onclick="deleteNote({{ note.id }})">Delete</button>
                 </div>
             </div>
@@ -39,6 +43,7 @@
     </ul>
   </div>
 </div>
+
 <script>
    // delete a note
    function deleteNote(noteId) {
@@ -61,11 +66,13 @@
     const edit = document.getElementById('edit')
     const done = document.getElementById('done')
     const delEditBtn = document.querySelectorAll('.delEditBtn')
+    const create = document.getElementById('add');
 
     if (noteTextarea) {
       noteTextarea.value = newContent;
       // Display the textarea for editing
       noteContainer.classList.add('show-note');
+      create.style.display ='none';
     }
 
     // hide list of notes
@@ -115,5 +122,6 @@
         console.error('Error:', error);
       });
   }
+
 </script>
 {% endblock %}

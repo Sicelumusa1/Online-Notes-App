@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
 }
 .container {
-  margin-top: 100px;
+  margin-top: 120px;
   margin-bottom: 50px;
   position: relative;
   text-align: center;
@@ -26,11 +26,17 @@ body {
   margin-top: 50px;
 }
 #home ul li i {
-  margin-right: 20px;
   font-size: 40px;
   background-color: rgb(148, 195, 209);
   border-radius: 50%;
   margin-top: 10px;
+}
+#home ul li {
+  margin-right: 24px;
+}
+
+#home ul li p {
+  font-size: 10px;
 }
 /* contact page styling */
 #contact {
@@ -83,9 +89,12 @@ form {
 }
 .form-group {
   display: flex;
-  height: 50px;
+  height: 38px;
   align-items: center;
 } 
+.input-group {
+  height: 38px;
+}
 .remember-forgot {
   display: flex;
   justify-content: end;
@@ -102,19 +111,34 @@ form {
   color: rgb(37, 9, 139);
 }
 
-.container {
-  margin-top: 150px;
-  text-align: center;
+#search-input {
+  margin-left: 10px;
 }
+
+#search-button {
+  margin-right: 10px;
+}
+
+.ql-toolbar {
+  background: rgb(108, 86, 190);
+}
+
 .buttons {
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
+  height: 40px;
+}
+.ql-toolbar, .ql-editor {
+  width: 100%;
 }
 #all_notes, #done, .note, .delEditBtn {
   display: none;
 }
 
+#all_notes {
+  margin-left: 5px;
+}
 .show-note {
   display: block;
 }
@@ -126,7 +150,7 @@ form {
   padding: 10px 0 10px 0 ;
 }
 .note_info {
-  min-width: 70%;
+  min-width: 50%;
   margin-right: 10px;
   font-size: 14px;
 }
@@ -142,7 +166,7 @@ form {
 }
 .list-group-item {
   border: 1px solid gray;
-  background-color: rgb(148, 195, 209);
+  background-color: rgb(118, 166, 180);
   color: #211f1f;
   text-align: start;
   margin-bottom: 10px;
@@ -151,12 +175,6 @@ form {
   display: block;
   min-width: 100%;
 }
-/* .note_delete {
-  width: 30%;
-  display: inline-flex;
-  text-align: start;
-  padding-top: 0;
-} */
 
 .data {
   max-width: 100%;
@@ -188,6 +206,7 @@ tr {
   border: none;
   background: transparent;
 }
+
 
 /* Navbar Styling */
 .navbar-custom, .footer {
