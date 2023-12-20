@@ -2,22 +2,22 @@ from flask import Flask
 import os
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from flask_login import LoginManager
 from flask_mail import Mail, Message
 from flask_migrate import Migrate
 
 db = SQLAlchemy()
-DB_NAME = 'notes_db'
-load_dotenv()
-my_key = os.getenv('MYKEY')
 mail = Mail()
 
 def create_app():
   app = Flask(__name__)
-  app.config['SECRET_KEY']= my_key
+  app.config['SECRET_KEY']= my_key # my_key is an env variable
 
-  app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{my_key}@localhost/{DB_NAME}'
+  app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f'postgresql+psycopg2://{os.envoron["DB_USER"]}:{os.environ["DB_PASSWORD"]}@/'
+    f'{os.environ["DB_NAME"]}?host=/cloudsql/{os.environ["CONNECTION_NAME"]}'
+  )
   app.config['MAIL_SERVER'] = 'smtp.gmail.com'
   app.config['MAIL_PORT'] = 465
   app.config['MAIL_USE_TLS'] = False

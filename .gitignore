@@ -2,3 +2,4 @@
 venv/
 *.pyc
 email_pass.txt
+migrations/
