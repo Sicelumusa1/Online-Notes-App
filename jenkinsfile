@@ -18,7 +18,7 @@ pipeline {
             -Dsonar.scm.provider=git \
             -Dsonar.sources=. \
             -Dsonar.projectKey=Online-Notes-App \
-            -Dsonar.login=sqp_2e5417da97e9c62576ce5bfd3829b2b630365d47"
+            -Dsonar.login=sqp_be9da1ee2a56ee2f4a2763a25d06739061dd919d"
                     }
                 }
             }   
