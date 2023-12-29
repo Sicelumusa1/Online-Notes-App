@@ -14,7 +14,8 @@ pipeline {
     stage("Sonarqube Analysis") {
         steps {
             withSonarQubeEnv('sonarqube-server') {
-            sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Online-Notes-App \
+            sh "$SCANNER_HOME/bin/sonar-scanner \
+            -Dsonar.projectName=Online-Notes-App \
             -Dsonar.scm.provider=git \
             -Dsonar.sources=. \
             -Dsonar.projectKey=Online-Notes-App \
