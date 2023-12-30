@@ -15,12 +15,13 @@ pipeline {
     }
 
     stages {
-     stage('Install Tools')
+     stage('Install Tools'){
          steps{
            sh "python3 -v"
            sh "docker -v"
               }
-           }
+         }
+
     stage("Sonarqube Analysis") {
         steps {
             withSonarQubeEnv('sonarqube-server') {
@@ -32,15 +33,15 @@ pipeline {
                     }
                 }
             }   
-     stage('Docker Build')
+     stage('Docker Build') {
          steps{
            script{
               sh "docker build . --file Dockerfile -t online-notes"
 	          sh "docker tag  online-notes $IMAGE_REPO/online-notes:latest"
                }
           }
-             
-     stage('Docker Push')
+     }    
+     stage('Docker Push') {
          steps{
            script{
                 withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
@@ -50,4 +51,5 @@ pipeline {
           }
            
   }
+}
 }
