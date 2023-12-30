@@ -14,8 +14,12 @@ pipeline {
     }
 
     stages {
-
-
+     stage('Install Tools')
+         steps{
+           sh "python3 -v"
+           sh "docker -v"
+              }
+           }
     stage("Sonarqube Analysis") {
         steps {
             withSonarQubeEnv('sonarqube-server') {
