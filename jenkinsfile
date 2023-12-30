@@ -36,7 +36,7 @@ pipeline {
          steps{
            script{
               sh "docker build . --file Dockerfile -t online-notes"
-	          sh "docker tag  online-notes $(IMAGE_REPO)/online-notes:latest"
+	          sh "docker tag  online-notes $IMAGE_REPO/online-notes:latest"
                }
           }
              
@@ -44,7 +44,7 @@ pipeline {
          steps{
            script{
                 withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
-                      sh "docker push $(IMAGE_REPO)/online-notes:latest"
+                      sh "docker push $IMAGE_REPO/online-notes:latest"
                         }
                }
           }
