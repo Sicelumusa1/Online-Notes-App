@@ -6,7 +6,6 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        AUTH_TOKEN = 'sonar-intergration'
     }
 
     stages {
@@ -20,7 +19,7 @@ pipeline {
             -Dsonar.scm.provider=git \
             -Dsonar.sources=. \
             -Dsonar.projectKey=Online-Notes-App \
-            -Dsonar.login=&AUTH_TOKEN \
+            -Dsonar.login=$AUTH_TOKEN \
             -X" 
                     }
                 }
