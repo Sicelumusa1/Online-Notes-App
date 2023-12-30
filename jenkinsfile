@@ -6,6 +6,11 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
+        MY_KEY = credentials('my-secret-key')
+        DB_USER = credentials('db-user')
+        DB_PASSWORD = credentials('db-password')
+        DB_NAME = 'my-database'
+        CONNECTION_NAME = 'my-connection-name'
     }
 
     stages {
