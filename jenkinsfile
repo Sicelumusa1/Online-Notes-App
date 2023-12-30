@@ -11,6 +11,7 @@ pipeline {
         DB_PASSWORD = credentials('db-password')
         DB_NAME = 'db-name'
         CONNECTION_NAME = 'connection-name'
+        IMAGE_REPO= 'leitsgroup'
     }
 
     stages {
@@ -31,6 +32,22 @@ pipeline {
                     }
                 }
             }   
-
+     stage('Docker Build')
+         steps{
+           script{
+              sh "docker build . --file Dockerfile -t online-notes"
+	          sh "docker tag  online-notes $(IMAGE_REPO)/online-notes:latest"
+               }
+          }
+             
+     stage('Docker Push')
+         steps{
+           script{
+                withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
+                      sh "docker push $(IMAGE_REPO)/online-notes:latest"
+                        }
+               }
+          }
+           
   }
 }
