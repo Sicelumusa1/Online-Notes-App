@@ -11,7 +11,7 @@ pipeline {
         DB_PASSWORD = credentials('db-password')
         DB_NAME = 'db-name'
         CONNECTION_NAME = 'connection-name'
-        IMAGE_REPO= 'leitsgroup'
+        IMAGE_REPO= 'gabuza/leitsgroup'
     }
 
     stages {
