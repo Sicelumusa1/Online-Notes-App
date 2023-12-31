@@ -207,6 +207,11 @@ tr {
   background: transparent;
 }
 
+/* Profile style */
+#table-description {
+  text-align: center;
+}
+
 
 /* Navbar Styling */
 .navbar-custom, .footer {

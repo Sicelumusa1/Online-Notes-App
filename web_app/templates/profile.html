@@ -7,7 +7,10 @@
     {% include "_errors.html" %}
     <h2>Profile Details</h2>
     <div class="table-responsive">
-      <table class="table table-hover table-condensed table-bordered">
+      <div id="table-description">
+        <p>Click the relevant field to reset your email, username or password</p>
+      </div>
+      <table class="table table-hover table-condensed table-bordered" aria-describedby="table-description">
         <thead>
           <tr>
             <th scope="col">Field</th>
