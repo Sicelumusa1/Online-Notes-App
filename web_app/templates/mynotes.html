@@ -45,6 +45,30 @@
 </div>
 
 <script>
+
+  // Create a note
+  // function createNote(noteContent) {
+  //   fetch('/add_note', {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ note: noteContent })
+  //   })
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response.json();
+  //     }
+  //     throw new Error('Failed to add note');
+  //   })
+  //   .then(data => {
+  //     console.log('Note added successfully:', data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error adding note:', error);
+  //   });
+  // }
+
    // delete a note
    function deleteNote(noteId) {
     fetch('/delete_note', {
@@ -53,6 +77,17 @@
     }).then((res) => {
       window.location.href = '';
     });
+  }
+
+  //  Replace newline character with placeholder string
+  function encodeNewlines(content) {
+    const encodedContent = content.replace(/\n/g, '\\n');
+    return encodedContent;
+  }
+
+  // Replace placeholder string with newline character
+  function decodeNewlines(content){
+    return content.replace(/\\n/g, '\n');
   }
 
   // edit an existing note
@@ -67,13 +102,15 @@
     const done = document.getElementById('done')
     const delEditBtn = document.querySelectorAll('.delEditBtn')
     const create = document.getElementById('add');
-
+   
     if (noteTextarea) {
-      noteTextarea.value = newContent;
+
+      noteTextarea.value = decodeNewlines(newContent);
       // Display the textarea for editing
       noteContainer.classList.add('show-note');
       create.style.display ='none';
     }
+
 
     // hide list of notes
     notesListItem.forEach(item => {
@@ -104,7 +141,7 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ noteId: noteId, newContent: newContent }),
+      body: JSON.stringify({ noteId: noteId, newContent: encodeNewlines(newContent) }),
     })
       .then((res) => {
         if (res.ok) {
