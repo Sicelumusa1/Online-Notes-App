@@ -46,29 +46,6 @@
 
 <script>
 
-  // Create a note
-  // function createNote(noteContent) {
-  //   fetch('/add_note', {
-  //     method: 'POST',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ note: noteContent })
-  //   })
-  //   .then(response => {
-  //     if (response.ok) {
-  //       return response.json();
-  //     }
-  //     throw new Error('Failed to add note');
-  //   })
-  //   .then(data => {
-  //     console.log('Note added successfully:', data);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error adding note:', error);
-  //   });
-  // }
-
    // delete a note
    function deleteNote(noteId) {
     fetch('/delete_note', {
