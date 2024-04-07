@@ -1,5 +1,6 @@
 from flask import Flask
 import os
+import base64
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 # from dotenv import load_dotenv
@@ -12,19 +13,26 @@ mail = Mail()
 
 def create_app():
   app = Flask(__name__)
-  app.config['SECRET_KEY']= my_key # my_key is an env variable
+  encoded_secret_key = os.environ.get('my_key')
+  if encoded_secret_key:
+      decoded_secret_key = base64.b64decode(encoded_secret_key).decode('utf-8')
+      app.config['SECRET_KEY'] = decoded_secret_key
+  else:
+    # Set a default secret key if 'my_key' is not present
+    app.config['SECRET_KEY'] = 'default_secret_key'
 
   app.config['SQLALCHEMY_DATABASE_URI'] = (
-    f'postgresql+psycopg2://{os.envoron["DB_USER"]}:{os.environ["DB_PASSWORD"]}@/'
-    f'{os.environ["DB_NAME"]}?host=/cloudsql/{os.environ["CONNECTION_NAME"]}'
-  )
+        f'postgresql+psycopg2://{os.environ["DB_USER"]}:{os.environ["DB_PASSWORD"]}'
+        f'@{os.environ["DB_HOST"]}:{os.environ["DB_PORT"]}/{os.environ["DB_NAME"]}'
+    )
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
   app.config['MAIL_SERVER'] = 'smtp.gmail.com'
   app.config['MAIL_PORT'] = 465
   app.config['MAIL_USE_TLS'] = False
   app.config['MAIL_USE_SSL'] = True
   app.config['MAIL_USERNAME'] = 'musaqwabe@gmail.com'
-  with open('email_pass.txt', 'r') as f:
-    app.config['MAIL_PASSWORD'] = f.read().strip()
+  app.config['MAIL_PASSWORD'] = 'AveryGoodPassword'
   app.config['MAIL_DEFAULT_SENDER'] = 'musaqwabe@gmail.com'
   
   db.init_app(app)
@@ -53,7 +61,7 @@ def create_app():
   return app
 
 def create_database(app):
-  if not path.exists('web_app/'+ DB_NAME):
-    with app.app_context():
-      db.create_all()
-      print('Database created')
+    if not path.exists('web_app/' + os.environ["DB_NAME"]):
+        with app.app_context():
+            db.create_all()
+            print('Database created')
