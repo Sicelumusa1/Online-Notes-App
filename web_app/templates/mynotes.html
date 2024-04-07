@@ -56,6 +56,16 @@
     });
   }
 
+  // Replace newline character with placeholder string
+  function encodeNewlines(content) {
+    return content.replace(/\n/g, '\\n');
+  }
+
+  // Replace placeholder string with newline character 
+  function decodeNewlines(content) {
+    return content.replace(/\\n/g, '\n');
+  }
+
   // edit an existing note
   function editNote(noteId, newContent) {
     // populate the notepad with the content of teh selected note
@@ -70,7 +80,7 @@
     const create = document.getElementById('add');
 
     if (noteTextarea) {
-      noteTextarea.value = newContent;
+      noteTextarea.value = decodeNewlines(newContent);
       // Display the textarea for editing
       noteContainer.classList.add('show-note');
       create.style.display ='none';

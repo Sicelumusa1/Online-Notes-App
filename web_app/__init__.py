@@ -3,13 +3,19 @@ import os
 import base64
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from flask_login import LoginManager
 from flask_mail import Mail, Message
 from flask_migrate import Migrate
 
+load_dotenv()
+
 db = SQLAlchemy()
 mail = Mail()
+DB_NAME = 'notes_db'
+conf_pass = os.getenv('MYKEY')
+db_pass = os.getenv('DB_KEY')
+email_pass = os.getenv('APP_EMAIL_PASS')
 
 def create_app():
   app = Flask(__name__)
