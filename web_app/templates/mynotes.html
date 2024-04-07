@@ -56,17 +56,6 @@
     });
   }
 
-  //  Replace newline character with placeholder string
-  function encodeNewlines(content) {
-    const encodedContent = content.replace(/\n/g, '\\n');
-    return encodedContent;
-  }
-
-  // Replace placeholder string with newline character
-  function decodeNewlines(content){
-    return content.replace(/\\n/g, '\n');
-  }
-
   // edit an existing note
   function editNote(noteId, newContent) {
     // populate the notepad with the content of teh selected note
@@ -79,15 +68,13 @@
     const done = document.getElementById('done')
     const delEditBtn = document.querySelectorAll('.delEditBtn')
     const create = document.getElementById('add');
-   
-    if (noteTextarea) {
 
-      noteTextarea.value = decodeNewlines(newContent);
+    if (noteTextarea) {
+      noteTextarea.value = newContent;
       // Display the textarea for editing
       noteContainer.classList.add('show-note');
       create.style.display ='none';
     }
-
 
     // hide list of notes
     notesListItem.forEach(item => {
@@ -118,7 +105,7 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ noteId: noteId, newContent: encodeNewlines(newContent) }),
+      body: JSON.stringify({ noteId: noteId, newContent: newContent }),
     })
       .then((res) => {
         if (res.ok) {
