@@ -12,16 +12,16 @@ load_dotenv()
 db = SQLAlchemy()
 mail = Mail()
 DB_NAME = 'notes_db'
-conf_pass = os.getenv('MYKEY')
 db_pass = os.getenv('DB_KEY')
 
 def create_app():
   app = Flask(__name__)
-  app.config['SECRET_KEY']= conf_pass
+  app.config['SECRET_KEY']= os.getenv('MYKEY')
 
-  app.config['SQLALCHEMY_DATABASE_URI'] =  (
-    f'postgresql+psycopg2://postgres:{db_pass}@localhost/notes_db'
-  )
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI') or \
+    f'postgresql+psycopg2://postgres:{db_pass}@localhost/{DB_NAME}'
+  
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
   # (
   #   f'postgresql+psycopg2://{os.envoron["DB_USER"]}:{os.environ["DB_PASSWORD"]}@/'
   #   f'{os.environ["DB_NAME"]}?host=/cloudsql/{os.environ["CONNECTION_NAME"]}'
