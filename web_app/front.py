@@ -45,6 +45,8 @@ def mynotes():
     if len(note) < 1:
       flash("The note is too short", category='error')
     else:
+      # # encode newline characters
+      # en_note = re.sub(r'\n', r'\\n', note)
       # Extract keywords for search functionality
       keywords = extract_keywords(note)
 

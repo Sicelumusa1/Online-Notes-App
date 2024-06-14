@@ -1,6 +1,5 @@
 from flask import Flask
 import os
-import base64
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from dotenv import load_dotenv
@@ -15,31 +14,25 @@ mail = Mail()
 DB_NAME = 'notes_db'
 conf_pass = os.getenv('MYKEY')
 db_pass = os.getenv('DB_KEY')
-email_pass = os.getenv('APP_EMAIL_PASS')
 
 def create_app():
   app = Flask(__name__)
-  encoded_secret_key = os.environ.get('my_key')
-  if encoded_secret_key:
-      decoded_secret_key = base64.b64decode(encoded_secret_key).decode('utf-8')
-      app.config['SECRET_KEY'] = decoded_secret_key
-  else:
-    # Set a default secret key if 'my_key' is not present
-    app.config['SECRET_KEY'] = 'default_secret_key'
+  app.config['SECRET_KEY']= conf_pass
 
-  app.config['SQLALCHEMY_DATABASE_URI'] = (
-        f'postgresql+psycopg2://{os.environ["DB_USER"]}:{os.environ["DB_PASSWORD"]}'
-        f'@{os.environ["DB_HOST"]}:{os.environ["DB_PORT"]}/{os.environ["DB_NAME"]}'
-    )
-  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-  app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-  app.config['MAIL_PORT'] = 465
-  app.config['MAIL_USE_TLS'] = False
-  app.config['MAIL_USE_SSL'] = True
-  app.config['MAIL_USERNAME'] = 'musaqwabe@gmail.com'
-  app.config['MAIL_PASSWORD'] = 'AveryGoodPassword'
-  app.config['MAIL_DEFAULT_SENDER'] = 'musaqwabe@gmail.com'
+  app.config['SQLALCHEMY_DATABASE_URI'] =  (
+    f'postgresql+psycopg2://postgres:{db_pass}@localhost/notes_db'
+  )
+  # (
+  #   f'postgresql+psycopg2://{os.envoron["DB_USER"]}:{os.environ["DB_PASSWORD"]}@/'
+  #   f'{os.environ["DB_NAME"]}?host=/cloudsql/{os.environ["CONNECTION_NAME"]}'
+  # )
+  app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+  app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+  app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
+  app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
+  app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+  app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')   
+  app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
   
   db.init_app(app)
   mail.init_app(app)
@@ -67,7 +60,7 @@ def create_app():
   return app
 
 def create_database(app):
-    if not path.exists('web_app/' + os.environ["DB_NAME"]):
-        with app.app_context():
-            db.create_all()
-            print('Database created')
+  if not path.exists('web_app/'+ DB_NAME):
+    with app.app_context():
+      db.create_all()
+      print('Database created')

@@ -89,7 +89,7 @@ def sign_up():
       db.session.add(new_user)
       db.session.commit()
       login_user(new_user)
-      return redirect(url_for('front.mynotes'))    
+      return redirect(url_for('front.add_note'))    
   return render_template("signup.html", user=current_user)
 
 # Route to reset the username
