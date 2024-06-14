@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 from flask_sqlalchemy import SQLAlchemy
+import psycopg2
 from os import path
 from dotenv import load_dotenv
 from flask_login import LoginManager
@@ -18,8 +19,8 @@ def create_app():
   app = Flask(__name__)
   app.config['SECRET_KEY']= os.getenv('MYKEY')
 
-  app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI') or \
-    f'postgresql+psycopg2://postgres:{db_pass}@localhost/{DB_NAME}'
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI') 
+  #   f'postgresql+psycopg2://postgres:{db_pass}@localhost/{DB_NAME}'
   
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
   # (
